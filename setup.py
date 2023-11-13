@@ -26,4 +26,9 @@ setup(
     packages=find_packages(),
     long_description=_read(README),
     install_requires=_read(REQUIREMENTS).splitlines(),
+    entry_points={
+        'console_scripts': [
+            'scriptr=scriptr.__main__:main'
+        ]
+    }
 )

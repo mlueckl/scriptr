@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import typer
 import logging
@@ -6,7 +8,7 @@ import subprocess
 from typing import Optional
 from typing_extensions import Annotated
 
-from script_handler import (
+from scriptr.script_handler import (
     get_script_requirements,
     install_packages,
     list_installed_packages,
@@ -40,11 +42,10 @@ def run(script: Annotated[Optional[str], typer.Argument()] = None):
         print('Select Script:')
         for key, script in enumerate(available_scripts):
             print(f'{key}. {script}')
-        
+
         selected_script = input()
         os.system('cls')
         script = available_scripts[int(selected_script)]
-
 
     venv_dir = "Scripts" if os.path.exists("venv/Scripts") else "bin"
     if script in get_scripts():
@@ -52,6 +53,8 @@ def run(script: Annotated[Optional[str], typer.Argument()] = None):
     else:
         logging.warning(f'{script} not available!')
 
+def main():
+    app()
 
 if __name__ == "__main__":
-    app()
+    main()
